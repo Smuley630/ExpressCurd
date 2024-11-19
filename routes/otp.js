@@ -41,6 +41,7 @@ router.post('/send-otp', (req, res) => {
         subject: 'Your OTP for Two-Step Verification',
         text: `Your OTP is ${otp}. It will expire in 5 minutes.`
     };
+    console.log("....mailOptions",mailOptions)
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
@@ -54,12 +55,13 @@ router.post('/send-otp', (req, res) => {
 // Verify OTP
 router.post('/verify-otp', (req, res) => {
     const { email, otp } = req.body;
-
+console.log("11",email,otp)
     if (!email || !otp) {
         return res.status(400).json({ message: 'Email and OTP are required' });
     }
 
     const otpData = otpStore[email];
+    console.log("..otpdata",otpData)
     if (!otpData) {
         return res.status(400).json({ message: 'OTP not found' });
     }

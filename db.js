@@ -5,7 +5,7 @@ const pool = mysql2.createPool({
     host:'0.0.0.0',
     user:'root',
     password:'Smuley630@',
-    database:'shoppingsite',
+    database:'hr_db',
     waitForConnections:true,
     connectionLimit:10,
     queueLimit:0,

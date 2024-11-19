@@ -34,6 +34,11 @@ console.log("mm",mobileNumber)
       otp: otp
       // Replace with your Sender ID
    // Optional: If you want to use a template, provide the ID here
+    },{
+      headers: {
+        'Content-Type': 'application/json',
+        'Authkey': '432639Aul5VlzH6710079eP1'
+      }
     });
     console.log("res",response)
 

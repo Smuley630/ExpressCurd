@@ -14,7 +14,7 @@ const db= require('../db')
 router.get('/employee/:id' ,(req,res)=>{
     const {id}=req.params
 // const statment=`select FirstName, Title ,PhotoPath, BirthDate , HireDate , City , Salary  from employees where EmployeeID = '${id}';`
-const statment=`select *  from employees where EmployeeID = '${id}';`
+const statment=`select *  from employees where EMPLOYEE_ID = '${id}';`
 
 db.execute(statment ,(error,data)=>{
     const result ={
@@ -36,7 +36,7 @@ db.execute(statment ,(error,data)=>{
             else{
                 result['status']='success'
         const user =data[0]
-        console.log("....user",user)
+        // console.log("....user",user)
         result['data']= {
          
             firstname : user['FirstName'],
@@ -48,16 +48,17 @@ db.execute(statment ,(error,data)=>{
 
         }
             }
-    console.log("...res",result)
+    // console.log("...res",result)
    res.send(result)
 }
 })
 })
 
 
-router.get('/employees/' ,(req,res)=>{
+router.get('/employees' ,(req,res)=>{
     
-const statment=`select  FirstName, Title , BirthDate ,Salary, PhotoPath from employees;`
+const statment=`select  FIRST_NAME, LAST_NAME , PHONE_NUMBER ,JOB_ID, SALARY,DEPARTMENT_ID,MANAGER_ID from employees;`
+console.log("....stat",statment)
 db.execute(statment ,(error,data)=>{
     const result ={
     status:" ",
@@ -77,19 +78,22 @@ db.execute(statment ,(error,data)=>{
         }
             else{
                 result['status']='success'
-                console.log(data)
+                console.log("1111111111",data)
                 const users = data.map(user => ({
-                    Title: user['Title'],
-                    firstname: user['FirstName'],
-                    BirthDate: user['BirthDate'],
-                    HireDate: user['HireDate'],
-                    Salary:user['Salary'],
-                    PhotoPath:user['PhotoPath'],
+                    FIRST_NAME: user['FIRST_NAME'],
+                    LAST_NAME: user['LAST_NAME'],
+                    PHONE_NUMBER: user['PHONE_NUMBER'],
+                    JOB_ID: user['JOB_ID'],
+                    SALARY:user['SALARY'],
+                    DEPARTMENT_ID:user['DEPARTMENT_ID'],
+                    MANAGER_ID:user['MANAGER_ID'],
+
 
                 }));
 
  result['data']= users;
             }
+console.log("........result",result)
     
    res.send(result)
 }
