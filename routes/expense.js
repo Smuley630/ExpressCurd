@@ -32,11 +32,7 @@ VALUES ('${user_id}', '${amount}', '${category}', '${date}', '${description}');`
             }
                 else{
                     result['status']='success'
-                    console.log("......true")
-                   
-    
-                }
-        console.log("...ressulrexpence",result)
+                   }
        res.send(result)
     }
     })
@@ -66,7 +62,6 @@ VALUES ('${user_id}', '${amount}', '${category}', '${date}', '${description}');`
                 }
                     else{
                         result['status']='success'
-                        console.log("......expense_date",data)
                         const users = data.map(user => ({
                             expense_date: user['expense_date'],
                             amount: user['amount'],
@@ -97,7 +92,6 @@ VALUES ('${user_id}', '${amount}', '${category}', '${date}', '${description}');`
                 data:[]    ,
                 error:" "
                 } 
-                console.log("////////",result)
             
                 if(error != null){
                     result['status'] = 'error'
@@ -111,7 +105,6 @@ VALUES ('${user_id}', '${amount}', '${category}', '${date}', '${description}');`
                     }
                         else{
                             result['status']='success'
-                            console.log("......expense_date",data)
                             const users = data.map(user => ({
                                 expense_date: user['expense_date'],
                                 amount: user['amount'],

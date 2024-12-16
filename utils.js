@@ -15,7 +15,6 @@ function createError(error) {
       result['status'] = 'success'
       result['data'] = data
     }
-  console.log(".....result")
     return result
   }
   

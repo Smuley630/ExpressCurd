@@ -27,7 +27,6 @@ router.get('/user/validate' ,(req,res)=>{
             }
                 else{
                     result['status']='success'
-                    // console.log(data)
                     const users = data.map(user => ({
                         user_id:user['user_id'],
                         emailid: user['emailid'],
@@ -44,11 +43,8 @@ router.get('/user/validate' ,(req,res)=>{
     })
 
 
-
-
-    router.post('/user/addUser' ,(req,res)=>{
+ router.post('/user/addUser' ,(req,res)=>{
         const { name, email } = req.body;
-console.log(".....www",name,email)
         if (!email || !name) {
             return res.status(400).json({ message: 'please enter credentials' });
         }
@@ -67,13 +63,11 @@ console.log(".....www",name,email)
                 
                }else{
                 if(data.length===0){
-        
-                    result['status']='error'
+        result['status']='error'
                     result['error'] ='Data not found'
                 }
                     else{
                         result['status']='success'
-                        console.log("......true")
                        
         
                     }

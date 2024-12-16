@@ -45,8 +45,7 @@ console.log(".....www",name,review)
 
 
     router.get('/user/getReview' ,(req,res)=>{
-    
-        const statment=`select name, review from user_reviews;`
+     const statment=`select name, review from user_reviews;`
         db.execute(statment ,(error,data)=>{
             const result ={
             status:" ",
@@ -66,7 +65,6 @@ console.log(".....www",name,review)
                 }
                     else{
                         result['status']='success'
-                        // console.log(data)
                         const users = data.map(user => ({
                             name: user['name'],
                             review: user['review'],

@@ -13,7 +13,6 @@ const db= require('../db')
 
 router.get('/employee/:id' ,(req,res)=>{
     const {id}=req.params
-// const statment=`select FirstName, Title ,PhotoPath, BirthDate , HireDate , City , Salary  from employees where EmployeeID = '${id}';`
 const statment=`select *  from employees where EMPLOYEE_ID = '${id}';`
 
 db.execute(statment ,(error,data)=>{
@@ -29,14 +28,12 @@ db.execute(statment ,(error,data)=>{
         
        }else{
         if(data.length===0){
-
-            result['status']='error'
+result['status']='error'
             result['error'] ='Data not found'
         }
             else{
                 result['status']='success'
         const user =data[0]
-        // console.log("....user",user)
         result['data']= {
          
             firstname : user['FirstName'],
@@ -48,7 +45,6 @@ db.execute(statment ,(error,data)=>{
 
         }
             }
-    // console.log("...res",result)
    res.send(result)
 }
 })
@@ -58,7 +54,6 @@ db.execute(statment ,(error,data)=>{
 router.get('/employees' ,(req,res)=>{
     
 const statment=`select  FIRST_NAME, LAST_NAME , PHONE_NUMBER ,JOB_ID, SALARY,DEPARTMENT_ID,MANAGER_ID from employees;`
-console.log("....stat",statment)
 db.execute(statment ,(error,data)=>{
     const result ={
     status:" ",
@@ -72,13 +67,11 @@ db.execute(statment ,(error,data)=>{
         
        }else{
         if(data.length===0){
-
-            result['status']='error'
+ result['status']='error'
             result['error'] ='Data not found'
         }
             else{
                 result['status']='success'
-                console.log("1111111111",data)
                 const users = data.map(user => ({
                     FIRST_NAME: user['FIRST_NAME'],
                     LAST_NAME: user['LAST_NAME'],
@@ -92,9 +85,7 @@ db.execute(statment ,(error,data)=>{
                 }));
 
  result['data']= users;
-            }
-console.log("........result",result)
-    
+            }    
    res.send(result)
 }
 })
@@ -122,12 +113,7 @@ db.execute(statment ,(error,data)=>{
             else{
                 result['status']='success'
         const user =data[0]
-        // result['data']= {
-        //     id:user['id'],
-        //     firstname : user['firstName'],
-        //     lastname :user['lastName']
-        //     ,email:user['email']
-        // }
+       
             }
     
    res.send(result)
@@ -135,74 +121,5 @@ db.execute(statment ,(error,data)=>{
 })
 })
 
-// router.post('/user/signup' ,(req,res)=>{
-//   const {firstname,lastname,email,password}=req.body
-
-//   const encryptedpassword= '' +crypto.SHA256(password)
-//        const statment = `insert into user (firstname , lastname, email, password) values ('${firstname}','${lastname}','${email}','${encryptedpassword}')`
-//        db.execute(statment,(error,data)=>{
-//        const result ={
-//         status : ' ',
-//         error  :' ',
-//         data :''
-//        }
-//    if(error != null){
-//     result['status'] = 'error'
-//     result['error'] =error
-    
-//    }else{
-//     result['status']='success'
-//     const user =data[0]
-//     console.log(user)
-//     result['data']= {
-//         // id:user['id'],
-// firstname : user['firstName'],
-//         lastname :user['lastName']
-//         ,email:user['email']
-//     }
-//    }
-//    res.send(result)
-   
-//        })
-   
-//    })
-   
-   
-//    router.post('/user/signin' ,(req,res)=>{
-//     const {email , password}=req.body
-//   const encryptedpassword= '' +crypto.SHA256(password)
-    
-//        const statment = `select * from user where email = '${email}' and password='${encryptedpassword}';`
-//        db.execute(statment,(error,data)=>{
-//         const result ={
-//             status : ' ',
-//             error  :' ',
-//             data : ' '
-//            }
-//    if(error !=null){
-//       result['status']='error'
-//       result['error'] =error
-//    }else{
-// if(data.length===0){
-
-//     result['status']='error'
-//     result['error'] ='Data not found'
-// }
-//     else{
-//         result['status']='success'
-// const user =data[0]
-// result['data']= {
-//     id:user['id'],
-//   firstname : user['firstName'],
-//     lastname :user['lastName']
-//     ,email:user['email']
-// }
-//     }
-//    } 
-//    res.send(result)
-// })
-  
-   
-//    })
 
    module.exports = router

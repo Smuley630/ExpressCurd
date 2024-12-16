@@ -36,6 +36,7 @@ router.post('/send-welcomeMail', (req, res) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
+console.log(".......sagart")
             console.log("...eror",error);
             return res.status(500).json({ message: 'Error sending OTP' });
         }
